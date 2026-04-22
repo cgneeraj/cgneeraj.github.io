@@ -27,12 +27,20 @@
         .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.22, 1, 0.36, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* PAGE 4: Panning & Zooming Background (Photo 15) */
+        /* DESKTOP: Panning & Zooming Background (Photo 15) */
         @keyframes panZoom {
             0% { transform: scale(1.2) translateX(0%); }
             50% { transform: scale(1.3) translateX(-8%); }
             100% { transform: scale(1.2) translateX(0%); }
         }
+
+        /* MOBILE: Vertical To and Fro (Photo 26) */
+        @keyframes verticalPan {
+            0% { transform: translateY(0%); }
+            50% { transform: translateY(-20%); } /* Adjust based on image height feel */
+            100% { transform: translateY(0%); }
+        }
+
         .panning-bg {
             position: absolute;
             top: 0; left: 0;
@@ -41,9 +49,21 @@
             animation: panZoom 25s ease-in-out infinite;
             filter: brightness(0.4);
             z-index: 0;
+            content: url('photo15.jpg'); /* Default Photo */
         }
 
-        /* Glassmorphism Cards */
+        /* Mobile Specific logic for Page 4 Background */
+        @media (max-width: 768px) {
+            .panning-bg {
+                content: url('photo26.jpg'); /* Mobile Photo */
+                width: 100%;
+                height: auto;
+                min-height: 150%; /* Ensuring it overflows vertically */
+                animation: verticalPan 40s ease-in-out infinite;
+                top: 0;
+            }
+        }
+
         .glass-card {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(10px);
@@ -56,12 +76,10 @@
             background: rgba(124, 58, 237, 0.05);
         }
 
-        /* Hover Effects for Photos */
         .photo-hover { overflow: hidden; border-radius: 8px; }
         .photo-hover img { transition: transform 0.8s ease; }
         .photo-hover:hover img { transform: scale(1.1); }
 
-        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--bg-dark); }
         ::-webkit-scrollbar-thumb { background: var(--deep-purple); border-radius: 10px; }
@@ -122,10 +140,10 @@
         </div>
 
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 py-8 border-y border-purple-900/20 reveal">
-            <div class="text-[10px] tracking-widest text-gray-400 uppercase text-center">Re-recording mixer</div>
-            <div class="text-[10px] tracking-widest text-gray-400 uppercase text-center">Sound Designer</div>
-            <div class="text-[10px] tracking-widest text-gray-400 uppercase text-center">Premix Engineer</div>
-            <div class="text-[10px] tracking-widest text-gray-400 uppercase text-center">Sound Editor</div>
+            <div class="text-[11px] tracking-widest text-gray-400 uppercase text-center">Re-recording mixer</div>
+            <div class="text-[11px] tracking-widest text-gray-400 uppercase text-center">Sound Designer</div>
+            <div class="text-[11px] tracking-widest text-gray-400 uppercase text-center">Premix Engineer</div>
+            <div class="text-[11px] tracking-widest text-gray-400 uppercase text-center">Sound Editor</div>
         </div>
     </section>
 
@@ -160,7 +178,7 @@
     </section>
 
     <section class="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
-        <img src="photo15.jpg" class="panning-bg" alt="Studio Background">
+        <div class="panning-bg"></div>
         
         <div class="absolute inset-0 bg-gradient-to-b from-var(--bg-dark) via-transparent to-var(--bg-dark)"></div>
         <div class="absolute inset-0 bg-black/40"></div>
@@ -178,7 +196,6 @@
     <section class="py-24 px-6">
         <div class="max-w-7xl mx-auto">
             <h2 class="text-center text-gray-600 text-[10px] tracking-[0.6em] uppercase mb-12 reveal">Gallery</h2>
-            
             <div class="grid grid-cols-2 md:grid-cols-5 gap-2 mb-32">
                 <script>
                     for (let i = 16; i <= 25; i++) {
@@ -224,7 +241,6 @@
                 }
             });
         }, observerOptions);
-
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 </body>
