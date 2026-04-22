@@ -3,230 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neeraj CG | Sound Designer & Re-recording Mixer</title>
+    <title>Neeraj CG | Sound Designer & Mixer</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;700&family=Outfit:wght@300;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --dark-bg: #0a0a0c;
-            --purple-accent: #2d1b4e;
-            --light-purple: #9d7afb;
+            --bg-dark: #0a0a0c;
+            --deep-purple: #1a0b2e;
+            --accent-purple: #7c3aed;
         }
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: var(--dark-bg); 
-            color: #d1d1d1; 
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: #d1d1d1;
             overflow-x: hidden;
             scroll-behavior: smooth;
         }
-        h1, h2, h3 { font-family: 'Outfit', sans-serif; }
 
-        /* Reveal on Scroll Animation */
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
+        h1, h2, h3, .heading-font { font-family: 'Outfit', sans-serif; }
+
+        /* Smooth Scroll Reveal */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.22, 1, 0.36, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* Background Glows */
-        .purple-glow {
-            background: radial-gradient(circle at center, var(--purple-accent) 0%, transparent 70%);
-            filter: blur(60px);
-            opacity: 0.4;
+        /* PAGE 4: Panning & Zooming Background (Photo 15) */
+        @keyframes panZoom {
+            0% { transform: scale(1.2) translateX(0%); }
+            50% { transform: scale(1.3) translateX(-8%); }
+            100% { transform: scale(1.2) translateX(0%); }
         }
-
-        /* Photo Hover Effects */
-        .photo-card {
-            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.5s ease;
-        }
-        .photo-card:hover {
-            transform: scale(1.03);
-            border-color: var(--light-purple);
-            z-index: 10;
-        }
-
-        /* Horizontal To-and-Fro Animation for Photo 15 */
-        @keyframes pan-horizontal {
-            0% { transform: translateX(0); }
-            50% { transform: translateX(-10%); }
-            100% { transform: translateX(0); }
-        }
-        .panning-background {
-            width: 115%;
-            height: 100%;
+        .panning-bg {
+            position: absolute;
+            top: 0; left: 0;
+            width: 110%; height: 110%;
             object-fit: cover;
-            animation: pan-horizontal 25s ease-in-out infinite;
+            animation: panZoom 25s ease-in-out infinite;
+            filter: brightness(0.4);
+            z-index: 0;
         }
-        .legacy-container {
-            position: relative;
-            height: 70vh;
-            width: 100%;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(124, 58, 237, 0.1);
+            transition: all 0.4s ease;
         }
+        .glass-card:hover {
+            border-color: var(--accent-purple);
+            transform: translateY(-5px);
+            background: rgba(124, 58, 237, 0.05);
+        }
+
+        /* Hover Effects for Photos */
+        .photo-hover { overflow: hidden; border-radius: 8px; }
+        .photo-hover img { transition: transform 0.8s ease; }
+        .photo-hover:hover img { transform: scale(1.1); }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { background: var(--deep-purple); border-radius: 10px; }
     </style>
 </head>
-<body class="selection:bg-purple-500 selection:text-white">
+<body>
 
-    <div class="fixed top-0 left-0 w-full h-full -z-10 overflow-hidden">
-        <div class="purple-glow absolute -top-20 -right-20 w-96 h-96"></div>
-        <div class="purple-glow absolute bottom-0 -left-20 w-[500px] h-[500px]"></div>
-    </div>
+    <section class="min-h-screen flex flex-col justify-center items-center text-center px-6 relative overflow-hidden">
+        <div class="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-purple-900/20 blur-[120px] rounded-full"></div>
+        <div class="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] bg-purple-900/10 blur-[100px] rounded-full"></div>
 
-    <section class="min-h-screen flex flex-col justify-center items-center text-center p-6">
-        <div class="relative mb-8 reveal active">
-            <div class="absolute inset-0 bg-purple-600 rounded-full blur-2xl opacity-20 animate-pulse"></div>
-            <img src="photo1.jpg" alt="Neeraj CG" class="relative w-64 h-64 rounded-full object-cover border-2 border-purple-900/50 shadow-2xl">
-        </div>
-        
-        <h1 class="text-6xl md:text-8xl font-bold text-white mb-2 tracking-tighter reveal active">NEERAJ CG</h1>
-        <p class="text-lg md:text-2xl text-purple-300 font-light tracking-[0.3em] uppercase mb-4 reveal active">Re-recording Mixer | Sound Designer</p>
-        <p class="text-gray-500 tracking-widest text-sm mb-10 reveal active">INDIAN FILM INDUSTRY</p>
-
-        <div class="flex gap-6 text-xs tracking-[0.2em] text-gray-400 mb-12 reveal active">
-            <span>FILM</span> <span class="text-purple-800">/</span> 
-            <span>TELEVISION</span> <span class="text-purple-800">/</span> 
-            <span>MUSIC</span> <span class="text-purple-800">/</span> 
-            <span>AUDIOBOOK</span>
-        </div>
-
-        <div class="flex gap-16 mb-12 reveal active">
-            <div class="group text-center">
-                <p class="text-4xl font-bold text-white group-hover:text-purple-400 transition">25+</p>
-                <p class="text-[10px] uppercase tracking-widest text-gray-600">Projects</p>
+        <div class="reveal active">
+            <div class="relative inline-block mb-8">
+                <div class="absolute inset-0 bg-purple-600 blur-3xl opacity-20 rounded-full animate-pulse"></div>
+                <img src="photo1.jpg" alt="Neeraj CG" class="relative w-48 h-48 md:w-56 md:h-56 rounded-full object-cover border-2 border-purple-500/30">
             </div>
-            <div class="group text-center">
-                <p class="text-4xl font-bold text-white group-hover:text-purple-400 transition">5+</p>
-                <p class="text-[10px] uppercase tracking-widest text-gray-600">Languages</p>
-            </div>
-        </div>
+            <h1 class="text-6xl md:text-8xl font-800 text-white tracking-tighter mb-2">NEERAJ CG</h1>
+            <p class="text-purple-400 font-light tracking-[0.4em] uppercase text-sm md:text-base mb-6">Re-recording Mixer | Sound Designer</p>
+            <p class="text-gray-500 uppercase tracking-widest text-xs mb-10">Indian Film Industry</p>
 
-        <a href="https://m.imdb.com/name/nm17449098" target="_blank" class="px-12 py-4 border border-purple-900/50 bg-purple-950/20 hover:bg-purple-600 hover:text-white transition-all duration-500 rounded-full text-[10px] tracking-[0.4em] text-purple-200 reveal active">
-            IMDb PROFILE
-        </a>
-    </section>
-
-    <section class="py-32 px-6 max-w-7xl mx-auto">
-        <div class="mb-20 reveal">
-            <h2 class="text-purple-400 uppercase tracking-[0.5em] text-xs mb-4">Portfolio</h2>
-            <p class="text-3xl md:text-4xl font-light text-white italic">Feature films, documentaries, short films, music albums</p>
-        </div>
-
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-24">
-            <script>
-                for(let i=2; i<=13; i++) {
-                    document.write(`
-                        <div class="aspect-square bg-zinc-900 border border-white/5 overflow-hidden photo-card reveal">
-                            <img src="photo${i}.jpg" class="w-full h-full object-cover">
-                        </div>
-                    `);
-                }
-            </script>
-        </div>
-
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center py-10 border-y border-purple-900/20 reveal">
-            <span class="text-[10px] tracking-[0.2em] text-gray-400 uppercase">Re-recording mixer</span>
-            <span class="text-[10px] tracking-[0.2em] text-gray-400 uppercase">Sound Designer</span>
-            <span class="text-[10px] tracking-[0.2em] text-gray-400 uppercase">Premix Engineer</span>
-            <span class="text-[10px] tracking-[0.2em] text-gray-400 uppercase">Sound Editor</span>
-        </div>
-    </section>
-
-    <section class="py-32 px-6 relative">
-        <div class="max-w-5xl mx-auto relative z-10">
-            <h2 class="text-3xl md:text-5xl font-extralight mb-20 text-center leading-tight reveal text-white">
-                Crafting the soundscape using <br>
-                <span class="font-semibold text-purple-400">advanced audio technology</span>
-            </h2>
-            
-            <div class="grid md:grid-cols-2 gap-4">
-                <div class="p-10 bg-zinc-900/40 border border-purple-900/30 rounded-2xl reveal">
-                    <h3 class="text-purple-400 font-bold mb-4 tracking-tighter text-xl uppercase">Sound Design</h3>
-                    <p class="text-gray-400 leading-relaxed text-sm">Creating the auditory world of movies by layering sound effects.</p>
-                </div>
-                <div class="p-10 bg-zinc-900/40 border border-purple-900/30 rounded-2xl reveal">
-                    <h3 class="text-purple-400 font-bold mb-4 tracking-tighter text-xl uppercase">Sound Mixing</h3>
-                    <p class="text-gray-400 leading-relaxed text-sm">Making the perfect blend with dialogue, sound effects and music.</p>
-                </div>
-                <div class="p-10 bg-zinc-900/40 border border-purple-900/30 rounded-2xl reveal">
-                    <h3 class="text-purple-400 font-bold mb-4 tracking-tighter text-xl uppercase">Immersive Audio</h3>
-                    <p class="text-gray-400 leading-relaxed text-sm">Dolby Atmos, 5.1, 7.1 & Stereo mixing for premium theatrical releases and streaming platforms.</p>
-                </div>
-                <div class="p-10 bg-zinc-900/40 border border-purple-900/30 rounded-2xl reveal">
-                    <h3 class="text-purple-400 font-bold mb-4 tracking-tighter text-xl uppercase">OTT Mastering</h3>
-                    <p class="text-gray-400 leading-relaxed text-sm">Platform-specific loudness compliance for Amazon Prime, Netflix, Disney+ Hotstar, and SonyLIV.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="legacy-container">
-        <div class="absolute inset-0 z-0">
-            <img src="photo15.jpg" class="panning-background opacity-20 brightness-75">
-            <div class="absolute inset-0 bg-gradient-to-b from-dark-bg via-transparent to-dark-bg"></div>
-        </div>
-        
-        <div class="relative z-10 text-center px-6 reveal">
-            <div class="inline-block p-1 bg-purple-500/20 rounded-xl mb-8">
-                <img src="photo14.jpg" class="w-72 h-72 object-cover rounded-lg shadow-2xl border border-white/10">
-            </div>
-            <p class="text-purple-200 italic text-2xl md:text-4xl font-light max-w-2xl mx-auto leading-snug">
-                "Sound Designer from the legendary team"
-            </p>
-        </div>
-    </section>
-
-    <section class="py-32 px-6">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-center text-gray-600 uppercase tracking-[0.5em] text-[10px] mb-12 reveal">Gallery</h2>
-            <div class="grid grid-cols-2 md:grid-cols-5 gap-2 mb-32">
-                <script>
-                    for(let i=16; i<=25; i++) {
-                        document.write(`
-                            <div class="aspect-square overflow-hidden reveal">
-                                <img src="photo${i}.jpg" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition duration-700">
-                            </div>
-                        `);
-                    }
-                </script>
-            </div>
-
-            <div class="max-w-4xl mx-auto bg-zinc-950 border border-purple-900/40 p-12 md:p-20 rounded-[3rem] text-center reveal">
-                <h2 class="text-5xl font-bold mb-16 text-white tracking-tighter">Connect</h2>
-                <div class="grid md:grid-cols-3 gap-12">
-                    <a href="https://www.instagram.com/cgneeraj" target="_blank" class="group">
-                        <p class="text-[10px] uppercase tracking-widest text-purple-500 mb-4">Instagram</p>
-                        <p class="text-lg group-hover:text-white transition">@cgneeraj</p>
-                    </a>
-                    <a href="mailto:cgneeraj@gmail.com" class="group">
-                        <p class="text-[10px] uppercase tracking-widest text-purple-500 mb-4">Email</p>
-                        <p class="text-lg group-hover:text-white transition lowercase">cgneeraj@gmail.com</p>
-                    </a>
-                    <div class="group text-center">
-                        <p class="text-[10px] uppercase tracking-widest text-purple-500 mb-4">Phone</p>
-                        <p class="text-lg transition">+91 8289876813</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="py-20 text-center">
-        <p class="text-[10px] text-gray-700 uppercase tracking-[0.4em]">© 2026 Neeraj CG • Built with Gemini</p>
-    </footer>
-
-    <script>
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                if (elementTop < windowHeight - 100) {
-                    reveals[i].classList.add("active");
-                }
-            }
-        }
-        window.addEventListener("scroll", reveal);
-        window.addEventListener("load", reveal);
-    </script>
-</body>
-</html>
+            <div class="flex flex-wrap justify-center gap-6 text-[10px] tracking-[0.3em] text-gray-400 mb-12 uppercase">
+                <span>Film</span> <span class="text-purple-900">|</span> <span>Television</span> <span class="text-purple-900">|</span>
