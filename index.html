@@ -189,4 +189,102 @@
                     <h3 class="text-white font-600 tracking-tight text-2xl mb-4 uppercase">IMMERSIVE AUDIO</h3>
                     <p class="text-gray-400 text-sm leading-relaxed max-w-md">Dolby Atmos, 5.1, 7.1 & Stereo mixing for theatrical and streaming releases.</p>
                 </div>
-                <div class="service-card p-1
+                <div class="service-card p-12 rounded-sm reveal group">
+                    <h3 class="text-white font-600 tracking-tight text-2xl mb-4 uppercase">OTT MASTERING</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed max-w-md">Loudness compliance for Amazon Prime, Netflix, Disney+ Hotstar, and SonyLIV.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
+        <img src="photo15.jpg" class="panning-bg-15" alt="Legendary Team Studio">
+        
+        <div class="absolute inset-0 bg-gradient-to-b from-var(--bg-dark) via-black/20 to-var(--bg-dark)"></div>
+        <div class="absolute inset-0 bg-gradient-to-l from-var(--bg-dark) via-transparent to-var(--bg-dark)"></div>
+        <div class="absolute inset-0 bg-black/30"></div>
+
+        <div class="relative z-10 text-center px-6 reveal">
+            <div class="inline-block p-1 bg-plasma-cyan/30 rounded-xl mb-10 shadow-3xl shadow-plasma-cyan/20">
+                <img src="photo14.jpg" class="w-72 h-72 md:w-96 md:h-96 object-cover rounded-lg shadow-2xl border-4 border-electric-violet/50">
+            </div>
+            <p class="text-2xl md:text-5xl font-300 text-cyan-100 tracking-tight max-w-4xl italic mx-auto leading-snug">
+                "Sound Designer from the <span class="font-600 text-white">legendary team</span>"
+            </p>
+        </div>
+    </section>
+
+    <section class="py-32 px-6 bg-[#0a0a0c]">
+        <div class="max-w-7xl mx-auto relative z-10">
+            <h2 class="text-center text-gray-700 text-[10px] tracking-[0.7em] uppercase mb-12 reveal">Visual Gallery</h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-3 mb-32">
+                <script>
+                    for(let i=16; i<=25; i++) {
+                        document.write(`
+                            <div class="aspect-square bg-charcoal overflow-hidden group reveal sound-card">
+                                <img src="photo${i}.jpg" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110">
+                            </div>
+                        `);
+                    }
+                </script>
+            </div>
+
+            <div class="max-w-5xl mx-auto bg-charcoal p-12 md:p-24 border-t-2 border-plasma-cyan/30 rounded-2xl text-center reveal shadow-plasma-cyan/10 shadow-3xl">
+                <h2 class="text-5xl md:text-7xl font-800 text-white mb-20 tracking-tighter">Connect with me</h2>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-12 text-sm">
+                    <a href="https://www.instagram.com/cgneeraj" target="_blank" class="group">
+                        <p class="text-[10px] tracking-[0.3em] text-plasma-cyan uppercase mb-4">Instagram</p>
+                        <p class="text-xl group-hover:text-white group-hover:scale-110 transition lowercase font-500">@cgneeraj</p>
+                    </a>
+                    <a href="mailto:cgneeraj@gmail.com" class="group col-span-2 md:col-span-1">
+                        <p class="text-[10px] tracking-[0.3em] text-plasma-cyan uppercase mb-4">Email</p>
+                        <p class="text-xl group-hover:text-white group-hover:scale-110 transition lowercase font-500">cgneeraj@gmail.com</p>
+                    </a>
+                    <div class="group col-span-2 md:col-span-1">
+                        <p class="text-[10px] tracking-[0.3em] text-plasma-cyan uppercase mb-4">Phone</p>
+                        <p class="text-xl text-gray-300 font-500">+91 8289876813</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-16 text-center text-[10px] text-gray-700 tracking-[0.5em] uppercase border-t border-plasma-cyan/5">
+        &copy; 2026 Neeraj CG • All Rights Reserved
+    </footer>
+
+    <script>
+        // Reveal on Scroll Script
+        const observerOptions = { threshold: 0.15 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Interactive Cursor Glow Script
+        const cursorGlow = document.getElementById('cursor-glow');
+        window.addEventListener('mousemove', (e) => {
+            cursorGlow.style.left = e.clientX + 'px';
+            cursorGlow.style.top = e.clientY + 'px';
+        });
+
+        // Interactive Button Pulse on hover
+        document.querySelectorAll('.btn-tech, .sound-card').forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                cursorGlow.style.width = '600px';
+                cursorGlow.style.height = '600px';
+            });
+            btn.addEventListener('mouseleave', () => {
+                cursorGlow.style.width = '500px';
+                cursorGlow.style.height = '500px';
+            });
+        });
+    </script>
+</body>
+</html>
