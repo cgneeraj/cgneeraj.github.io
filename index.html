@@ -3,154 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neeraj CG | Sound Designer & Re-recording Mixer</title>
+    <title>Neeraj CG | Sound Designer & Mixer</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;600;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #070708;
-            --charcoal: #141416;
-            --midnight-purple: #1e1030;
-            --plasma-cyan: #0fffd1; /* Accent 1 */
-            --electric-violet: #8c36ff; /* Accent 2 */
-        }
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: var(--bg-dark); 
-            color: #d1d1d1; 
-            overflow-x: hidden; 
-            scroll-behavior: smooth; 
-        }
-        h1, h2, h3, .heading { font-family: 'Outfit', sans-serif; }
-
-        /* Highly Interactive Cursor Glow */
-        #cursor-glow {
-            position: fixed;
-            width: 500px; h-500px;
-            background: radial-gradient(circle at center, rgba(140, 54, 255, 0.1) 0%, transparent 70%);
-            pointer-events: none;
-            z-index: 1000;
-            transform: translate(-50%, -50%);
-            transition: width 0.3s ease, h-3s ease;
+            --bg-dark: #0a0a0c;
+            --deep-purple: #1a0b2e;
+            --accent-purple: #7c3aed;
         }
 
-        /* 🎬 Highly Interactive Photo 15: Panning, Zooming, Pumping Visiblity */
-        @keyframes pumpingVisibilityPan {
-            0% { transform: scale(1.3) translateX(0%); opacity: 0.6; }
-            33% { opacity: 0.9; } /* Peaks visiblity */
-            66% { transform: scale(1.4) translateX(-8%); opacity: 0.6; }
-            100% { transform: scale(1.3) translateX(0%); opacity: 0.6; }
-        }
-        .panning-bg-15 {
-            position: absolute;
-            top: 0; left: 0;
-            width: 115%; height: 115%; /* Extra width for movement */
-            object-fit: cover;
-            animation: pumpingVisibilityPan 25s ease-in-out infinite;
-            z-index: 0;
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: #d1d1d1;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
-        /* Elements Reveal on Scroll */
+        h1, h2, h3, .heading-font { font-family: 'Outfit', sans-serif; }
+
+        /* Smooth Scroll Reveal */
         .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.22, 1, 0.36, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* Interactive Sound Grid (Photos 2-13) */
-        .sound-card {
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid rgba(255, 255, 255, 0.03);
+        /* PAGE 4: Panning & Zooming Background (Photo 15) */
+        @keyframes panZoom {
+            0% { transform: scale(1.2) translateX(0%); }
+            50% { transform: scale(1.3) translateX(-8%); }
+            100% { transform: scale(1.2) translateX(0%); }
         }
-        .sound-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(13, 255, 209, 0.15); /* Cyan Glow */
-            border-color: var(--plasma-cyan);
-        }
-
-        /* Animated Interactive Buttons */
-        .btn-tech {
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(140, 54, 255, 0.3);
-            background: var(--midnight-purple);
-            transition: 0.3s all;
-        }
-        .btn-tech::after {
-            content: '';
+        .panning-bg {
             position: absolute;
-            width: 30px; h-full;
-            background: var(--plasma-cyan);
-            top: 0; left: -50px;
-            transform: skewX(-20deg);
-            opacity: 0.5;
-            transition: 0.6s all;
+            top: 0; left: 0;
+            width: 110%; height: 110%;
+            object-fit: cover;
+            animation: panZoom 25s ease-in-out infinite;
+            filter: brightness(0.4);
+            z-index: 0;
         }
-        .btn-tech:hover::after { left: 120%; }
-        .btn-tech:hover { border-color: var(--plasma-cyan); background: var(--bg-dark); }
 
-        /* Services Cards */
-        .service-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(140, 54, 255, 0.1);
-            transition: 0.4s all;
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(124, 58, 237, 0.1);
+            transition: all 0.4s ease;
         }
-        .service-card:hover {
-            background: var(--plasma-cyan);
-            color: black;
-            transform: scale(1.02);
+        .glass-card:hover {
+            border-color: var(--accent-purple);
+            transform: translateY(-5px);
+            background: rgba(124, 58, 237, 0.05);
         }
-        .service-card:hover h3, .service-card:hover p { color: black; }
+
+        /* Hover Effects for Photos */
+        .photo-hover { overflow: hidden; border-radius: 8px; }
+        .photo-hover img { transition: transform 0.8s ease; }
+        .photo-hover:hover img { transform: scale(1.1); }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { background: var(--deep-purple); border-radius: 10px; }
     </style>
 </head>
 <body>
 
-    <div id="cursor-glow"></div>
-
     <section class="min-h-screen flex flex-col justify-center items-center text-center px-6 relative overflow-hidden">
-        <div class="absolute inset-0 bg-radial-gradient(circle at 50% 50%, var(--electric-violet) 0%, transparent 60%) opacity-5 blur-3xl"></div>
-        
-        <div class="reveal active relative z-10">
-            <div class="relative inline-block mb-10">
-                <div class="absolute inset-0 bg-plasma-cyan rounded-full blur-3xl opacity-10 scale-150 animate-pulse"></div>
-                <img src="photo1.jpg" alt="Neeraj CG" class="relative w-52 h-52 md:w-64 md:h-64 rounded-full object-cover border-4 border-electric-violet/30 shadow-2xl">
+        <div class="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-purple-900/20 blur-[120px] rounded-full"></div>
+        <div class="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] bg-purple-900/10 blur-[100px] rounded-full"></div>
+
+        <div class="reveal active">
+            <div class="relative inline-block mb-8">
+                <div class="absolute inset-0 bg-purple-600 blur-3xl opacity-20 rounded-full animate-pulse"></div>
+                <img src="photo1.jpg" alt="Neeraj CG" class="relative w-48 h-48 md:w-56 md:h-56 rounded-full object-cover border-2 border-purple-500/30">
             </div>
-            
             <h1 class="text-6xl md:text-8xl font-800 text-white tracking-tighter mb-2">NEERAJ CG</h1>
-            <p class="text-electric-violet font-light tracking-[0.4em] uppercase text-sm md:text-lg mb-4">Re-recording Mixer | Sound Designer</p>
-            <p class="text-gray-600 uppercase tracking-widest text-xs mb-10">INDIAN FILM INDUSTRY</p>
+            <p class="text-purple-400 font-light tracking-[0.4em] uppercase text-sm md:text-base mb-6">Re-recording Mixer | Sound Designer</p>
+            <p class="text-gray-500 uppercase tracking-widest text-xs mb-10">Indian Film Industry</p>
 
-            <div class="flex flex-wrap justify-center gap-6 text-[11px] font-500 tracking-[0.3em] text-cyan-200 mb-12 uppercase">
-                <span>Film</span> <span class="text-plasma-cyan/30">•</span> 
-                <span>Television</span> <span class="text-plasma-cyan/30">•</span> 
-                <span>Music</span>
+            <div class="flex flex-wrap justify-center gap-6 text-[10px] tracking-[0.3em] text-gray-400 mb-12 uppercase">
+                <span>Film</span> <span class="text-purple-900">|</span> <span>Television</span> <span class="text-purple-900">|</span> <span>Music</span>
             </div>
 
-            <div class="flex gap-16 mb-12 justify-center py-6 px-10 border border-plasma-cyan/10 rounded-full bg-charcoal/30">
-                <div class="text-center group">
-                    <span class="block text-4xl font-600 text-white group-hover:text-plasma-cyan transition">25+</span>
-                    <span class="text-[10px] uppercase text-gray-600 tracking-widest">Projects</span>
+            <div class="flex gap-16 mb-12 justify-center">
+                <div class="text-center">
+                    <span class="block text-3xl font-600 text-white">25+</span>
+                    <span class="text-[10px] uppercase text-gray-500 tracking-widest">Projects</span>
                 </div>
-                <div class="text-center group">
-                    <span class="block text-4xl font-600 text-white group-hover:text-plasma-cyan transition">5+</span>
-                    <span class="text-[10px] uppercase text-gray-600 tracking-widest">Languages</span>
+                <div class="text-center">
+                    <span class="block text-3xl font-600 text-white">5+</span>
+                    <span class="text-[10px] uppercase text-gray-500 tracking-widest">Languages</span>
                 </div>
             </div>
 
-            <a href="https://m.imdb.com/name/nm17449098" target="_blank" class="btn-tech inline-block px-12 py-4 text-cyan-200 text-[10px] tracking-[0.4em] uppercase transition-all rounded-sm shadow-xl shadow-plasma-cyan/10">
-                IMDb PROFILE
+            <a href="https://m.imdb.com/name/nm17449098" target="_blank" class="inline-block px-10 py-4 bg-purple-600 hover:bg-purple-500 text-white text-[10px] tracking-[0.4em] uppercase transition-all rounded-sm shadow-lg shadow-purple-900/20">
+                IMDb Profile
             </a>
         </div>
     </section>
 
-    <section class="py-32 px-6 max-w-7xl mx-auto relative z-10">
-        <div class="reveal mb-20">
-            <h2 class="text-plasma-cyan text-xs tracking-[0.6em] uppercase mb-4">Portfolio</h2>
-            <p class="text-3xl md:text-5xl font-300 text-white leading-snug">Feature films, documentaries, short films, music albums</p>
+    <section class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="reveal mb-16">
+            <h2 class="text-purple-400 text-xs tracking-[0.5em] uppercase mb-4">Portfolio</h2>
+            <p class="text-2xl md:text-4xl font-light text-white italic">Feature films, documentaries, short films, music albums</p>
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-24">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-20">
             <script>
-                for(let i=2; i<=13; i++) {
+                for (let i = 2; i <= 13; i++) {
                     document.write(`
-                        <div class="sound-card aspect-square bg-charcoal reveal overflow-hidden">
+                        <div class="photo-hover aspect-square bg-zinc-900 reveal">
                             <img src="photo${i}.jpg" class="w-full h-full object-cover">
                         </div>
                     `);
@@ -158,104 +121,101 @@
             </script>
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 py-10 border-y border-electric-violet/20 reveal bg-midnight-purple/20 px-6 rounded-sm">
-            <span class="text-[10px] tracking-[0.3em] text-gray-300 uppercase text-center font-500">Re-recording mixer</span>
-            <span class="text-[10px] tracking-[0.3em] text-gray-300 uppercase text-center font-500">Sound Designer</span>
-            <span class="text-[10px] tracking-[0.3em] text-gray-300 uppercase text-center font-500">Premix Engineer</span>
-            <span class="text-[10px] tracking-[0.3em] text-gray-300 uppercase text-center font-500">Sound Editor</span>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 py-8 border-y border-purple-900/20 reveal">
+            <div class="text-[10px] tracking-widest text-gray-400 uppercase text-center">Re-recording mixer</div>
+            <div class="text-[10px] tracking-widest text-gray-400 uppercase text-center">Sound Designer</div>
+            <div class="text-[10px] tracking-widest text-gray-400 uppercase text-center">Premix Engineer</div>
+            <div class="text-[10px] tracking-widest text-gray-400 uppercase text-center">Sound Editor</div>
         </div>
     </section>
 
-    <section class="py-32 px-6 bg-[#0a0a0c] relative">
-        <div class="absolute left-0 top-0 w-96 h-96 bg-electric-violet/10 blur-[150px] rounded-full"></div>
-        <div class="max-w-6xl mx-auto relative z-10">
-            <div class="text-center mb-24 reveal">
-                <h2 class="text-3xl md:text-6xl font-300 text-white leading-tight max-w-4xl mx-auto">
+    <section class="py-24 px-6 bg-[#0c0c0e]">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-20 reveal">
+                <h2 class="text-3xl md:text-5xl font-300 text-white leading-tight">
                     Crafting the complete soundscape using <br>
-                    <span class="font-800 text-plasma-cyan italic animate-pulse">advanced audio tech</span>
+                    <span class="font-800 text-purple-500 italic">advanced audio production technology</span>
                 </h2>
             </div>
 
             <div class="grid md:grid-cols-2 gap-6">
-                <div class="service-card p-12 rounded-sm reveal group">
-                    <h3 class="text-white font-600 tracking-tight text-2xl mb-4 uppercase">SOUND DESIGN</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed max-w-md">Creating the auditory world of movies by layering sound effects.</p>
+                <div class="glass-card p-10 reveal">
+                    <h3 class="text-purple-400 font-600 tracking-tighter text-xl mb-4 uppercase italic">Sound Design</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Creating the auditory world of movies by layering sound effects.</p>
                 </div>
-                <div class="service-card p-12 rounded-sm reveal group">
-                    <h3 class="text-white font-600 tracking-tight text-2xl mb-4 uppercase">SOUND MIXING</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed max-w-md">Making the perfect blend with dialogue, sound effects and music.</p>
+                <div class="glass-card p-10 reveal">
+                    <h3 class="text-purple-400 font-600 tracking-tighter text-xl mb-4 uppercase italic">Sound Mixing</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Making the perfect blend with dialogue, sound effects and music.</p>
                 </div>
-                <div class="service-card p-12 rounded-sm reveal group">
-                    <h3 class="text-white font-600 tracking-tight text-2xl mb-4 uppercase">IMMERSIVE AUDIO</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed max-w-md">Dolby Atmos, 5.1, 7.1 & Stereo mixing for theatrical and streaming releases.</p>
+                <div class="glass-card p-10 reveal">
+                    <h3 class="text-purple-400 font-600 tracking-tighter text-xl mb-4 uppercase italic">Immersive Audio</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Dolby Atmos, 5.1, 7.1 & Stereo. Immersive audio mixing for premium theatrical releases and streaming platforms.</p>
                 </div>
-                <div class="service-card p-12 rounded-sm reveal group">
-                    <h3 class="text-white font-600 tracking-tight text-2xl mb-4 uppercase">OTT MASTERING</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed max-w-md">Loudness compliance for Amazon Prime, Netflix, Disney+ Hotstar, and SonyLIV.</p>
+                <div class="glass-card p-10 reveal">
+                    <h3 class="text-purple-400 font-600 tracking-tighter text-xl mb-4 uppercase italic">OTT Mastering</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Platform-specific loudness compliance and delivery specs for Amazon Prime, Netflix, Disney+ Hotstar, and SonyLIV.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
-        <img src="photo15.jpg" class="panning-bg-15" alt="Legendary Team Studio">
+    <section class="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
+        <img src="photo15.jpg" class="panning-bg" alt="Studio Background">
         
-        <div class="absolute inset-0 bg-gradient-to-b from-var(--bg-dark) via-black/20 to-var(--bg-dark)"></div>
-        <div class="absolute inset-0 bg-gradient-to-l from-var(--bg-dark) via-transparent to-var(--bg-dark)"></div>
-        <div class="absolute inset-0 bg-black/30"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-var(--bg-dark) via-transparent to-var(--bg-dark)"></div>
+        <div class="absolute inset-0 bg-black/40"></div>
 
         <div class="relative z-10 text-center px-6 reveal">
-            <div class="inline-block p-1 bg-plasma-cyan/30 rounded-xl mb-10 shadow-3xl shadow-plasma-cyan/20">
-                <img src="photo14.jpg" class="w-72 h-72 md:w-96 md:h-96 object-cover rounded-lg shadow-2xl border-4 border-electric-violet/50">
+            <div class="inline-block p-1 bg-purple-500/20 rounded-lg mb-8">
+                <img src="photo14.jpg" class="w-64 h-64 md:w-80 md:h-80 object-cover rounded-md shadow-2xl border border-white/10">
             </div>
-            <p class="text-2xl md:text-5xl font-300 text-cyan-100 tracking-tight max-w-4xl italic mx-auto leading-snug">
-                "Sound Designer from the <span class="font-600 text-white">legendary team</span>"
+            <p class="text-2xl md:text-4xl font-300 italic text-purple-200 tracking-tight max-w-2xl">
+                "Sound Designer from the legendary team"
             </p>
         </div>
     </section>
 
-    <section class="py-32 px-6 bg-[#0a0a0c]">
-        <div class="max-w-7xl mx-auto relative z-10">
-            <h2 class="text-center text-gray-700 text-[10px] tracking-[0.7em] uppercase mb-12 reveal">Visual Gallery</h2>
+    <section class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-center text-gray-600 text-[10px] tracking-[0.6em] uppercase mb-12 reveal">Gallery</h2>
             
-            <div class="grid grid-cols-2 md:grid-cols-5 gap-3 mb-32">
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-2 mb-32">
                 <script>
-                    for(let i=16; i<=25; i++) {
+                    for (let i = 16; i <= 25; i++) {
                         document.write(`
-                            <div class="aspect-square bg-charcoal overflow-hidden group reveal sound-card">
-                                <img src="photo${i}.jpg" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110">
+                            <div class="photo-hover aspect-square bg-zinc-900 reveal">
+                                <img src="photo${i}.jpg" class="w-full h-full object-cover">
                             </div>
                         `);
                     }
                 </script>
             </div>
 
-            <div class="max-w-5xl mx-auto bg-charcoal p-12 md:p-24 border-t-2 border-plasma-cyan/30 rounded-2xl text-center reveal shadow-plasma-cyan/10 shadow-3xl">
-                <h2 class="text-5xl md:text-7xl font-800 text-white mb-20 tracking-tighter">Connect with me</h2>
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-12 text-sm">
+            <div class="max-w-4xl mx-auto bg-gradient-to-br from-zinc-900 to-black p-12 md:p-20 border border-purple-900/30 rounded-3xl text-center reveal shadow-2xl">
+                <h2 class="text-4xl md:text-6xl font-800 text-white mb-16 tracking-tighter">Connect with me</h2>
+                <div class="grid md:grid-cols-3 gap-12">
                     <a href="https://www.instagram.com/cgneeraj" target="_blank" class="group">
-                        <p class="text-[10px] tracking-[0.3em] text-plasma-cyan uppercase mb-4">Instagram</p>
-                        <p class="text-xl group-hover:text-white group-hover:scale-110 transition lowercase font-500">@cgneeraj</p>
+                        <p class="text-[10px] tracking-widest text-purple-500 uppercase mb-4">Instagram</p>
+                        <p class="text-lg group-hover:text-white transition">@cgneeraj</p>
                     </a>
-                    <a href="mailto:cgneeraj@gmail.com" class="group col-span-2 md:col-span-1">
-                        <p class="text-[10px] tracking-[0.3em] text-plasma-cyan uppercase mb-4">Email</p>
-                        <p class="text-xl group-hover:text-white group-hover:scale-110 transition lowercase font-500">cgneeraj@gmail.com</p>
+                    <a href="mailto:cgneeraj@gmail.com" class="group">
+                        <p class="text-[10px] tracking-widest text-purple-500 uppercase mb-4">Email</p>
+                        <p class="text-lg group-hover:text-white transition lowercase">cgneeraj@gmail.com</p>
                     </a>
-                    <div class="group col-span-2 md:col-span-1">
-                        <p class="text-[10px] tracking-[0.3em] text-plasma-cyan uppercase mb-4">Phone</p>
-                        <p class="text-xl text-gray-300 font-500">+91 8289876813</p>
+                    <div>
+                        <p class="text-[10px] tracking-widest text-purple-500 uppercase mb-4">Contact</p>
+                        <p class="text-lg text-gray-300">+91 8289876813</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="py-16 text-center text-[10px] text-gray-700 tracking-[0.5em] uppercase border-t border-plasma-cyan/5">
+    <footer class="py-12 text-center text-[10px] text-gray-700 tracking-[0.5em] uppercase">
         &copy; 2026 Neeraj CG • All Rights Reserved
     </footer>
 
     <script>
-        // Reveal on Scroll Script
         const observerOptions = { threshold: 0.15 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -266,25 +226,6 @@
         }, observerOptions);
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-        // Interactive Cursor Glow Script
-        const cursorGlow = document.getElementById('cursor-glow');
-        window.addEventListener('mousemove', (e) => {
-            cursorGlow.style.left = e.clientX + 'px';
-            cursorGlow.style.top = e.clientY + 'px';
-        });
-
-        // Interactive Button Pulse on hover
-        document.querySelectorAll('.btn-tech, .sound-card').forEach(btn => {
-            btn.addEventListener('mouseenter', () => {
-                cursorGlow.style.width = '600px';
-                cursorGlow.style.height = '600px';
-            });
-            btn.addEventListener('mouseleave', () => {
-                cursorGlow.style.width = '500px';
-                cursorGlow.style.height = '500px';
-            });
-        });
     </script>
 </body>
 </html>
