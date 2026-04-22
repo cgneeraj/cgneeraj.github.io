@@ -10,12 +10,10 @@
         :root {
             --bg-dark: #070708;
             --charcoal: #141416;
-            --midnight-purple: #1a0b2e;
-            --plasma-cyan: #0fffd1; 
-            --electric-violet: #8c36ff;
-            --accent-purple: #7c3aed;
+            --midnight-purple: #1e1030;
+            --plasma-cyan: #0fffd1; /* Accent 1 */
+            --electric-violet: #8c36ff; /* Accent 2 */
         }
-
         body { 
             font-family: 'Inter', sans-serif; 
             background-color: var(--bg-dark); 
@@ -25,55 +23,70 @@
         }
         h1, h2, h3, .heading { font-family: 'Outfit', sans-serif; }
 
-        /* --- Animations --- */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
-        }
-        .float-element { animation: float 6s ease-in-out infinite; }
-
-        @keyframes panZoom {
-            0% { transform: scale(1.25) translateX(0%); opacity: 0.7; }
-            50% { transform: scale(1.35) translateX(-8%); opacity: 0.9; }
-            100% { transform: scale(1.25) translateX(0%); opacity: 0.7; }
-        }
-
-        /* --- Interactive Components --- */
+        /* Highly Interactive Cursor Glow */
         #cursor-glow {
             position: fixed;
-            width: 600px; height: 600px;
-            background: radial-gradient(circle at center, rgba(140, 54, 255, 0.12) 0%, transparent 70%);
+            width: 500px; h-500px;
+            background: radial-gradient(circle at center, rgba(140, 54, 255, 0.1) 0%, transparent 70%);
             pointer-events: none;
             z-index: 1000;
             transform: translate(-50%, -50%);
-            transition: width 0.3s ease, height 0.3s ease;
+            transition: width 0.3s ease, h-3s ease;
         }
 
-        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.22, 1, 0.36, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-
-        .photo-card {
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            overflow: hidden;
-            border-radius: 4px;
+        /* 🎬 Highly Interactive Photo 15: Panning, Zooming, Pumping Visiblity */
+        @keyframes pumpingVisibilityPan {
+            0% { transform: scale(1.3) translateX(0%); opacity: 0.6; }
+            33% { opacity: 0.9; } /* Peaks visiblity */
+            66% { transform: scale(1.4) translateX(-8%); opacity: 0.6; }
+            100% { transform: scale(1.3) translateX(0%); opacity: 0.6; }
         }
-        .photo-card:hover {
-            transform: scale(1.04);
-            box-shadow: 0 10px 30px rgba(13, 255, 209, 0.15);
-            border-color: var(--plasma-cyan);
-        }
-
-        .panning-bg-interactive {
+        .panning-bg-15 {
             position: absolute;
             top: 0; left: 0;
-            width: 120%; height: 120%;
+            width: 115%; height: 115%; /* Extra width for movement */
             object-fit: cover;
-            animation: panZoom 25s ease-in-out infinite;
+            animation: pumpingVisibilityPan 25s ease-in-out infinite;
             z-index: 0;
         }
 
+        /* Elements Reveal on Scroll */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.22, 1, 0.36, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Interactive Sound Grid (Photos 2-13) */
+        .sound-card {
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+        .sound-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(13, 255, 209, 0.15); /* Cyan Glow */
+            border-color: var(--plasma-cyan);
+        }
+
+        /* Animated Interactive Buttons */
+        .btn-tech {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(140, 54, 255, 0.3);
+            background: var(--midnight-purple);
+            transition: 0.3s all;
+        }
+        .btn-tech::after {
+            content: '';
+            position: absolute;
+            width: 30px; h-full;
+            background: var(--plasma-cyan);
+            top: 0; left: -50px;
+            transform: skewX(-20deg);
+            opacity: 0.5;
+            transition: 0.6s all;
+        }
+        .btn-tech:hover::after { left: 120%; }
+        .btn-tech:hover { border-color: var(--plasma-cyan); background: var(--bg-dark); }
+
+        /* Services Cards */
         .service-card {
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(140, 54, 255, 0.1);
@@ -81,25 +94,10 @@
         }
         .service-card:hover {
             background: var(--plasma-cyan);
-            transform: translateY(-5px);
+            color: black;
+            transform: scale(1.02);
         }
-        .service-card:hover * { color: black !important; }
-
-        .nav-item { position: relative; cursor: default; }
-        .nav-item::after {
-            content: '';
-            position: absolute;
-            width: 0; height: 1px;
-            bottom: -4px; left: 0;
-            background-color: var(--plasma-cyan);
-            transition: width 0.3s ease;
-        }
-        .nav-item:hover::after { width: 100%; }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-track { background: var(--bg-dark); }
-        ::-webkit-scrollbar-thumb { background: var(--midnight-purple); border-radius: 10px; }
+        .service-card:hover h3, .service-card:hover p { color: black; }
     </style>
 </head>
 <body>
@@ -107,62 +105,52 @@
     <div id="cursor-glow"></div>
 
     <section class="min-h-screen flex flex-col justify-center items-center text-center px-6 relative overflow-hidden">
-        <div class="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-purple-900/10 blur-[120px] rounded-full"></div>
-
-        <div class="reveal active z-10">
-            <div class="relative inline-block mb-10 float-element">
-                <div class="absolute inset-0 bg-electric-violet blur-3xl opacity-20 rounded-full animate-pulse"></div>
-                <img src="photo1.jpg" alt="Neeraj CG" class="relative w-52 h-52 md:w-64 md:h-64 rounded-full object-cover border-2 border-electric-violet/30 shadow-2xl transition-transform duration-700 hover:scale-105">
-            </div>
-
-            <h1 class="text-6xl md:text-8xl font-800 text-white tracking-tighter mb-2 hover:tracking-normal transition-all duration-1000 cursor-default">
-                NEERAJ CG
-            </h1>
-            <p class="text-purple-400 font-light tracking-[0.4em] uppercase text-sm md:text-lg mb-4">
-                Re-recording Mixer | Sound Designer
-            </p>
-            <p class="text-gray-600 uppercase tracking-widest text-[10px] mb-12">Indian Film Industry</p>
-
-            <div class="flex flex-wrap justify-center gap-8 text-[11px] tracking-[0.3em] text-gray-400 mb-14 uppercase">
-                <span class="nav-item">Film</span> 
-                <span class="opacity-20">/</span> 
-                <span class="nav-item">Television</span> 
-                <span class="opacity-20">/</span> 
-                <span class="nav-item">Music</span>
-            </div>
-
-            <div class="flex gap-20 mb-14 justify-center py-6 px-12 border border-white/5 rounded-full bg-white/5 backdrop-blur-sm">
-                <div class="text-center group">
-                    <span class="block text-4xl font-600 text-white group-hover:text-plasma-cyan transition-colors">25+</span>
-                    <span class="text-[9px] uppercase text-gray-500 tracking-widest">Projects</span>
-                </div>
-                <div class="text-center group">
-                    <span class="block text-4xl font-600 text-white group-hover:text-plasma-cyan transition-colors">5+</span>
-                    <span class="text-[9px] uppercase text-gray-500 tracking-widest">Languages</span>
-                </div>
-            </div>
-
-            <a href="https://m.imdb.com/name/nm17449098" target="_blank" class="inline-block px-12 py-4 border border-purple-500/40 hover:bg-white hover:text-black text-white text-[10px] tracking-[0.5em] uppercase transition-all duration-500 rounded-sm">
-                View IMDb Profile
-            </a>
-        </div>
+        <div class="absolute inset-0 bg-radial-gradient(circle at 50% 50%, var(--electric-violet) 0%, transparent 60%) opacity-5 blur-3xl"></div>
         
-        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 opacity-20 animate-bounce">
-            <div class="w-[1px] h-12 bg-gradient-to-b from-white to-transparent"></div>
+        <div class="reveal active relative z-10">
+            <div class="relative inline-block mb-10">
+                <div class="absolute inset-0 bg-plasma-cyan rounded-full blur-3xl opacity-10 scale-150 animate-pulse"></div>
+                <img src="photo1.jpg" alt="Neeraj CG" class="relative w-52 h-52 md:w-64 md:h-64 rounded-full object-cover border-4 border-electric-violet/30 shadow-2xl">
+            </div>
+            
+            <h1 class="text-6xl md:text-8xl font-800 text-white tracking-tighter mb-2">NEERAJ CG</h1>
+            <p class="text-electric-violet font-light tracking-[0.4em] uppercase text-sm md:text-lg mb-4">Re-recording Mixer | Sound Designer</p>
+            <p class="text-gray-600 uppercase tracking-widest text-xs mb-10">INDIAN FILM INDUSTRY</p>
+
+            <div class="flex flex-wrap justify-center gap-6 text-[11px] font-500 tracking-[0.3em] text-cyan-200 mb-12 uppercase">
+                <span>Film</span> <span class="text-plasma-cyan/30">•</span> 
+                <span>Television</span> <span class="text-plasma-cyan/30">•</span> 
+                <span>Music</span>
+            </div>
+
+            <div class="flex gap-16 mb-12 justify-center py-6 px-10 border border-plasma-cyan/10 rounded-full bg-charcoal/30">
+                <div class="text-center group">
+                    <span class="block text-4xl font-600 text-white group-hover:text-plasma-cyan transition">25+</span>
+                    <span class="text-[10px] uppercase text-gray-600 tracking-widest">Projects</span>
+                </div>
+                <div class="text-center group">
+                    <span class="block text-4xl font-600 text-white group-hover:text-plasma-cyan transition">5+</span>
+                    <span class="text-[10px] uppercase text-gray-600 tracking-widest">Languages</span>
+                </div>
+            </div>
+
+            <a href="https://m.imdb.com/name/nm17449098" target="_blank" class="btn-tech inline-block px-12 py-4 text-cyan-200 text-[10px] tracking-[0.4em] uppercase transition-all rounded-sm shadow-xl shadow-plasma-cyan/10">
+                IMDb PROFILE
+            </a>
         </div>
     </section>
 
     <section class="py-32 px-6 max-w-7xl mx-auto relative z-10">
         <div class="reveal mb-20">
             <h2 class="text-plasma-cyan text-xs tracking-[0.6em] uppercase mb-4">Portfolio</h2>
-            <p class="text-3xl md:text-5xl font-300 text-white italic">Feature films, documentaries, short films, music albums</p>
+            <p class="text-3xl md:text-5xl font-300 text-white leading-snug">Feature films, documentaries, short films, music albums</p>
         </div>
 
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-24">
             <script>
                 for(let i=2; i<=13; i++) {
                     document.write(`
-                        <div class="photo-card aspect-square bg-charcoal reveal">
+                        <div class="sound-card aspect-square bg-charcoal reveal overflow-hidden">
                             <img src="photo${i}.jpg" class="w-full h-full object-cover">
                         </div>
                     `);
@@ -170,67 +158,71 @@
             </script>
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 py-10 border-y border-white/5 reveal text-center">
-            <span class="text-[10px] tracking-[0.3em] text-gray-500 uppercase font-500">Re-recording mixer</span>
-            <span class="text-[10px] tracking-[0.3em] text-gray-500 uppercase font-500">Sound Designer</span>
-            <span class="text-[10px] tracking-[0.3em] text-gray-500 uppercase font-500">Premix Engineer</span>
-            <span class="text-[10px] tracking-[0.3em] text-gray-500 uppercase font-500">Sound Editor</span>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 py-10 border-y border-electric-violet/20 reveal bg-midnight-purple/20 px-6 rounded-sm">
+            <span class="text-[10px] tracking-[0.3em] text-gray-300 uppercase text-center font-500">Re-recording mixer</span>
+            <span class="text-[10px] tracking-[0.3em] text-gray-300 uppercase text-center font-500">Sound Designer</span>
+            <span class="text-[10px] tracking-[0.3em] text-gray-300 uppercase text-center font-500">Premix Engineer</span>
+            <span class="text-[10px] tracking-[0.3em] text-gray-300 uppercase text-center font-500">Sound Editor</span>
         </div>
     </section>
 
-    <section class="py-32 px-6 relative bg-[#09090b]">
+    <section class="py-32 px-6 bg-[#0a0a0c] relative">
+        <div class="absolute left-0 top-0 w-96 h-96 bg-electric-violet/10 blur-[150px] rounded-full"></div>
         <div class="max-w-6xl mx-auto relative z-10">
-            <h2 class="text-3xl md:text-6xl font-300 text-white mb-24 text-center leading-tight">
-                Crafting soundscapes using <br>
-                <span class="font-800 text-purple-500 italic">advanced production tech</span>
-            </h2>
+            <div class="text-center mb-24 reveal">
+                <h2 class="text-3xl md:text-6xl font-300 text-white leading-tight max-w-4xl mx-auto">
+                    Crafting the complete soundscape using <br>
+                    <span class="font-800 text-plasma-cyan italic animate-pulse">advanced audio tech</span>
+                </h2>
+            </div>
 
             <div class="grid md:grid-cols-2 gap-6">
-                <div class="service-card p-12 reveal group">
-                    <h3 class="text-purple-400 font-600 text-xl mb-4 uppercase italic tracking-tighter">Sound Design</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">Creating the auditory world of movies by layering sound effects.</p>
+                <div class="service-card p-12 rounded-sm reveal group">
+                    <h3 class="text-white font-600 tracking-tight text-2xl mb-4 uppercase">SOUND DESIGN</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed max-w-md">Creating the auditory world of movies by layering sound effects.</p>
                 </div>
-                <div class="service-card p-12 reveal group">
-                    <h3 class="text-purple-400 font-600 text-xl mb-4 uppercase italic tracking-tighter">Sound Mixing</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">Making the perfect blend with dialogue, sound effects and music.</p>
+                <div class="service-card p-12 rounded-sm reveal group">
+                    <h3 class="text-white font-600 tracking-tight text-2xl mb-4 uppercase">SOUND MIXING</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed max-w-md">Making the perfect blend with dialogue, sound effects and music.</p>
                 </div>
-                <div class="service-card p-12 reveal group">
-                    <h3 class="text-purple-400 font-600 text-xl mb-4 uppercase italic tracking-tighter">Immersive Audio</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">Dolby Atmos, 5.1, 7.1 & Stereo mixing for theatrical and streaming releases.</p>
+                <div class="service-card p-12 rounded-sm reveal group">
+                    <h3 class="text-white font-600 tracking-tight text-2xl mb-4 uppercase">IMMERSIVE AUDIO</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed max-w-md">Dolby Atmos, 5.1, 7.1 & Stereo mixing for theatrical and streaming releases.</p>
                 </div>
-                <div class="service-card p-12 reveal group">
-                    <h3 class="text-purple-400 font-600 text-xl mb-4 uppercase italic tracking-tighter">OTT Mastering</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">Loudness compliance for Amazon Prime, Netflix, Disney+ Hotstar, and SonyLIV.</p>
+                <div class="service-card p-12 rounded-sm reveal group">
+                    <h3 class="text-white font-600 tracking-tight text-2xl mb-4 uppercase">OTT MASTERING</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed max-w-md">Loudness compliance for Amazon Prime, Netflix, Disney+ Hotstar, and SonyLIV.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
-        <img src="photo15.jpg" class="panning-bg-interactive" alt="Studio Background">
+    <section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
+        <img src="photo15.jpg" class="panning-bg-15" alt="Legendary Team Studio">
         
-        <div class="absolute inset-0 bg-gradient-to-b from-var(--bg-dark) via-transparent to-var(--bg-dark)"></div>
-        <div class="absolute inset-0 bg-black/40"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-var(--bg-dark) via-black/20 to-var(--bg-dark)"></div>
+        <div class="absolute inset-0 bg-gradient-to-l from-var(--bg-dark) via-transparent to-var(--bg-dark)"></div>
+        <div class="absolute inset-0 bg-black/30"></div>
 
         <div class="relative z-10 text-center px-6 reveal">
-            <div class="inline-block p-1 bg-white/5 rounded-xl mb-10">
-                <img src="photo14.jpg" class="w-72 h-72 md:w-96 md:h-96 object-cover rounded-lg shadow-2xl border border-white/10">
+            <div class="inline-block p-1 bg-plasma-cyan/30 rounded-xl mb-10 shadow-3xl shadow-plasma-cyan/20">
+                <img src="photo14.jpg" class="w-72 h-72 md:w-96 md:h-96 object-cover rounded-lg shadow-2xl border-4 border-electric-violet/50">
             </div>
-            <p class="text-2xl md:text-5xl font-300 text-purple-100 tracking-tight italic max-w-4xl mx-auto">
-                "Sound Designer from the <span class="font-600 text-white uppercase not-italic">legendary team</span>"
+            <p class="text-2xl md:text-5xl font-300 text-cyan-100 tracking-tight max-w-4xl italic mx-auto leading-snug">
+                "Sound Designer from the <span class="font-600 text-white">legendary team</span>"
             </p>
         </div>
     </section>
 
-    <section class="py-32 px-6">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-center text-gray-700 text-[10px] tracking-[0.8em] uppercase mb-16 reveal">Gallery</h2>
+    <section class="py-32 px-6 bg-[#0a0a0c]">
+        <div class="max-w-7xl mx-auto relative z-10">
+            <h2 class="text-center text-gray-700 text-[10px] tracking-[0.7em] uppercase mb-12 reveal">Visual Gallery</h2>
             
             <div class="grid grid-cols-2 md:grid-cols-5 gap-3 mb-32">
                 <script>
                     for(let i=16; i<=25; i++) {
                         document.write(`
-                            <div class="photo-card aspect-square reveal group">
+                            <div class="aspect-square bg-charcoal overflow-hidden group reveal sound-card">
                                 <img src="photo${i}.jpg" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110">
                             </div>
                         `);
@@ -238,54 +230,59 @@
                 </script>
             </div>
 
-            <div class="max-w-5xl mx-auto bg-charcoal p-12 md:p-24 rounded-3xl text-center reveal shadow-2xl border border-white/5">
-                <h2 class="text-5xl md:text-7xl font-800 text-white mb-20 tracking-tighter">Connect</h2>
-                <div class="grid md:grid-cols-3 gap-12 text-sm">
+            <div class="max-w-5xl mx-auto bg-charcoal p-12 md:p-24 border-t-2 border-plasma-cyan/30 rounded-2xl text-center reveal shadow-plasma-cyan/10 shadow-3xl">
+                <h2 class="text-5xl md:text-7xl font-800 text-white mb-20 tracking-tighter">Connect with me</h2>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-12 text-sm">
                     <a href="https://www.instagram.com/cgneeraj" target="_blank" class="group">
-                        <p class="text-[10px] tracking-[0.3em] text-purple-500 uppercase mb-4">Instagram</p>
-                        <p class="text-xl group-hover:text-plasma-cyan transition-colors">@cgneeraj</p>
+                        <p class="text-[10px] tracking-[0.3em] text-plasma-cyan uppercase mb-4">Instagram</p>
+                        <p class="text-xl group-hover:text-white group-hover:scale-110 transition lowercase font-500">@cgneeraj</p>
                     </a>
-                    <a href="mailto:cgneeraj@gmail.com" class="group">
-                        <p class="text-[10px] tracking-[0.3em] text-purple-500 uppercase mb-4">Email</p>
-                        <p class="text-xl group-hover:text-plasma-cyan transition-colors lowercase">cgneeraj@gmail.com</p>
+                    <a href="mailto:cgneeraj@gmail.com" class="group col-span-2 md:col-span-1">
+                        <p class="text-[10px] tracking-[0.3em] text-plasma-cyan uppercase mb-4">Email</p>
+                        <p class="text-xl group-hover:text-white group-hover:scale-110 transition lowercase font-500">cgneeraj@gmail.com</p>
                     </a>
-                    <div>
-                        <p class="text-[10px] tracking-[0.3em] text-purple-500 uppercase mb-4">Contact</p>
-                        <p class="text-xl text-gray-300 font-500 tracking-wide">+91 8289876813</p>
+                    <div class="group col-span-2 md:col-span-1">
+                        <p class="text-[10px] tracking-[0.3em] text-plasma-cyan uppercase mb-4">Phone</p>
+                        <p class="text-xl text-gray-300 font-500">+91 8289876813</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="py-16 text-center text-[10px] text-gray-800 tracking-[0.5em] uppercase">
-        &copy; 2026 Neeraj CG • Built with Gemini & GitHub
+    <footer class="py-16 text-center text-[10px] text-gray-700 tracking-[0.5em] uppercase border-t border-plasma-cyan/5">
+        &copy; 2026 Neeraj CG • All Rights Reserved
     </footer>
 
     <script>
-        // Reveal Logic
+        // Reveal on Scroll Script
         const observerOptions = { threshold: 0.15 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
             });
         }, observerOptions);
+
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // Cursor Glow Follow
-        const glow = document.getElementById('cursor-glow');
+        // Interactive Cursor Glow Script
+        const cursorGlow = document.getElementById('cursor-glow');
         window.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
+            cursorGlow.style.left = e.clientX + 'px';
+            cursorGlow.style.top = e.clientY + 'px';
         });
 
-        // Hover expansions for Cursor
-        document.querySelectorAll('a, .photo-card, .service-card').forEach(item => {
-            item.addEventListener('mouseenter', () => {
-                glow.style.width = '800px'; glow.style.height = '800px';
+        // Interactive Button Pulse on hover
+        document.querySelectorAll('.btn-tech, .sound-card').forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                cursorGlow.style.width = '600px';
+                cursorGlow.style.height = '600px';
             });
-            item.addEventListener('mouseleave', () => {
-                glow.style.width = '600px'; glow.style.height = '600px';
+            btn.addEventListener('mouseleave', () => {
+                cursorGlow.style.width = '500px';
+                cursorGlow.style.height = '500px';
             });
         });
     </script>
