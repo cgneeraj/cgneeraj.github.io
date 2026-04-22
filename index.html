@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neeraj CG | Sound Designer & Re-recording Mixer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;700&family=Outfit:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark-bg: #0a0a0c;
+            --purple-accent: #2d1b4e;
+            --light-purple: #9d7afb;
+        }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--dark-bg); 
+            color: #d1d1d1; 
+            overflow-x: hidden;
+        }
+        h1, h2, h3 { font-family: 'Outfit', sans-serif; }
+
+        /* Smooth reveal animation */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Animated Purple Glow */
+        .purple-glow {
+            background: radial-gradient(circle at center, var(--purple-accent) 0%, transparent 70%);
+            filter: blur(60px);
+            opacity: 0.4;
+        }
+
+        /* Hover lifting effect for photos */
+        .photo-card {
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s ease;
+        }
+        .photo-card:hover {
+            transform: scale(1.03) translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            border-color: var(--light-purple);
+        }
+    </style>
+</head>
+<body class="selection:bg-purple-500 selection:text-white">
+
+    <div class="fixed top-0 left-0 w-full h-full -z-10 overflow-hidden">
+        <div class="purple-glow absolute -top-20 -right-20 w-96 h-96"></div>
+        <div class="purple-glow absolute bottom-0 -left-20 w-[500px] h-[500px]"></div>
+    </div>
+
+    <section class="min-h-screen flex flex-col justify-center items-center text-center p-6">
+        <div class="relative mb-8 reveal">
+            <div class="absolute inset-0 bg-purple-600 rounded-full blur-2xl opacity-20 animate-pulse"></div>
+            <img src="photo1.jpg" alt="Neeraj CG" class="relative w-56 h-56 md:w-64 md:h-64 rounded-full object-cover border-2 border-purple-900/50 shadow-2xl">
+        </div>
+        
+        <h1 class="text-6xl md:text-8xl font-bold text-white mb-2 tracking-tighter reveal">NEERAJ CG</h1>
+        <p class="text-lg md:text-2xl text-purple-300 font-light tracking-[0.3em] uppercase mb-4 reveal">Re-recording Mixer | Sound Designer</p>
+        <p class="text-gray-500 tracking-widest text-sm mb-10 reveal">INDIAN FILM INDUSTRY</p>
+
+        <div class="flex gap-6 text-xs tracking-[0.2em] text-gray-400 mb-12 reveal">
+            <span>FILM</span> <span class="text-purple-800">/</span> 
+            <span>TV</span> <span class="text-purple-800">/</span> 
+            <span>MUSIC</span> <span class="text-purple-800">/</span> 
+            <span>AUDIOBOOK</span>
+        </div>
+
+        <div class="flex gap-16 mb-12 reveal">
+            <div class="group">
+                <p class="text-4xl font-bold text-white group-hover:text-purple-400 transition">25+</p>
+                <p class="text-[10px] uppercase tracking-widest text-gray-600">Projects</p>
+            </div>
+            <div class="group">
+                <p class="text-4xl font-bold text-white group-hover:text-purple-400 transition">5+</p>
+                <p class="text-[10px] uppercase tracking-widest text-gray-600">Languages</p>
+            </div>
+        </div>
+
+        <a href="https://m.imdb.com/name/nm17449098" target="_blank" class="px-12 py-4 border border-purple-900/50 bg-purple-950/20 hover:bg-purple-600 hover:text-white transition-all duration-500 rounded-full text-[10px] tracking-[0.4em] text-purple-200 reveal">
+            IMDb PROFILE
+        </a>
+    </section>
+
+    <section class="py-32 px-6 max-w-7xl mx-auto">
+        <div class="mb-20 reveal">
+            <h2 class="text-purple-400 uppercase tracking-[0.5em] text-xs mb-4">Portfolio</h2>
+            <p class="text-3xl md:text-4xl font-light text-white italic">Feature films, documentaries, short films, music albums</p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-24">
+            <script>
+                for(let i=2; i<=13; i++) {
+                    document.write(`
+                        <div class="aspect-square bg-zinc-900/50 border border-white/5 overflow-hidden photo-card reveal">
+                            <img src="photo${i}.jpg" class="w-full h-full object-cover">
+                        </div>
+                    `);
+                }
+            </script>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center py-10 border-y border-purple-900/20 reveal">
+            <span class="text-[10px] tracking-[0.2em] text-gray-400 uppercase">Re-recording mixer</span>
+            <span class="text-[10px] tracking-[0.2em] text-gray-400 uppercase">Sound Designer</span>
+            <span class="text-[10px] tracking-[0.2em] text-gray-400 uppercase">Premix Engineer</span>
+            <span class="text-[10px] tracking-[0.2em] text-gray-400 uppercase">Sound Editor</span>
+        </div>
+    </section>
+
+    <section class="py-32 px-6 relative overflow-hidden">
+        <div class="max-w-5xl mx-auto relative z-10">
+            <h2 class="text-3xl md:text-5xl font-extralight mb-20 text-center leading-tight reveal text-white">
+                Crafting the soundscape using <br>
+                <span class="font-semibold text-purple-400">advanced audio technology</span>
+            </h2>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="p-10 bg-zinc-900/30 border border-purple-900/30 rounded-3xl hover:border-purple-500/50 transition-all group reveal">
+                    <h3 class="text-purple-400 font-bold mb-4 tracking-tighter text-xl">SOUND DESIGN</h3>
+                    <p class="text-gray-400 leading-relaxed text-sm">Creating the auditory world of movies by layering sound effects.</p>
+                </div>
+                <div class="p-10 bg-zinc-900/30 border border-purple-900/30 rounded-3xl hover:border-purple-500/50 transition-all group reveal">
+                    <h3 class="text-purple-400 font-bold mb-4 tracking-tighter text-xl">SOUND MIXING</h3>
+                    <p class="text-gray-400 leading-relaxed text-sm">Making the perfect blend with dialogue, sound effects and music.</p>
+                </div>
+                <div class="p-10 bg-zinc-900/30 border border-purple-900/30 rounded-3xl hover:border-purple-500/50 transition-all group reveal">
+                    <h3 class="text-purple-400 font-bold mb-4 tracking-tighter text-xl">IMMERSIVE AUDIO</h3>
+                    <p class="text-gray-400 leading-relaxed text-sm">Dolby Atmos, 5.1, 7.1 & Stereo mixing for premium theatrical and streaming releases.</p>
+                </div>
+                <div class="p-10 bg-zinc-900/30 border border-purple-900/30 rounded-3xl hover:border-purple-500/50 transition-all group reveal">
+                    <h3 class="text-purple-400 font-bold mb-4 tracking-tighter text-xl">OTT MASTERING</h3>
+                    <p class="text-gray-400 leading-relaxed text-sm">Platform-specific loudness compliance for Netflix, Prime, Disney+ Hotstar, and SonyLIV.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="relative min-h-[80vh] flex items-center justify-center">
+        <img src="photo15.jpg" class="absolute inset-0 w-full h-full object-cover opacity-20">
+        <div class="absolute inset-0 bg-gradient-to-b from-dark-bg via-transparent to-dark-bg"></div>
+        
+        <div class="relative z-10 text-center px-6 reveal">
+            <div class="inline-block p-1 bg-purple-500/20 rounded-xl mb-8">
+                <img src="photo14.jpg" class="w-72 h-72 object-cover rounded-lg shadow-2xl">
+            </div>
+            <p class="text-purple-300 italic text-2xl md:text-4xl font-light max-w-2xl mx-auto leading-snug">
+                "Sound Designer from the legendary team"
+            </p>
+        </div>
+    </section>
+
+    <section class="py-32 px-6">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-center text-gray-600 uppercase tracking-[0.5em] text-[10px] mb-12 reveal">Visual Gallery</h2>
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-32">
+                <script>
+                    for(let i=16; i<=25; i++) {
+                        document.write(`
+                            <div class="aspect-square overflow-hidden rounded-lg reveal">
+                                <img src="photo${i}.jpg" class="w-full h-full object-cover hover:scale-110 transition duration-1000">
+                            </div>
+                        `);
+                    }
+                </script>
+            </div>
+
+            <div class="max-w-4xl mx-auto bg-gradient-to-br from-zinc-900 to-black border border-purple-900/40 p-12 md:p-20 rounded-[3rem] text-center reveal shadow-2xl">
+                <h2 class="text-5xl font-bold mb-16 text-white tracking-tighter">Connect</h2>
+                <div class="grid md:grid-cols-3 gap-12">
+                    <a href="https://www.instagram.com/cgneeraj" class="group">
+                        <p class="text-[10px] uppercase tracking-widest text-purple-500 mb-4">Instagram</p>
+                        <p class="text-lg group-hover:text-white transition">@cgneeraj</p>
+                    </a>
+                    <a href="mailto:cgneeraj@gmail.com" class="group">
+                        <p class="text-[10px] uppercase tracking-widest text-purple-500 mb-4">Email</p>
+                        <p class="text-lg group-hover:text-white transition">cgneeraj@gmail.com</p>
+                    </a>
+                    <div class="group">
+                        <p class="text-[10px] uppercase tracking-widest text-purple-500 mb-4">Phone</p>
+                        <p class="text-lg">+91 8289876813</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-20 text-center">
+        <p class="text-[10px] text-gray-700 uppercase tracking-[0.4em]">© 2026 Neeraj CG • Built with Gemini</p>
+    </footer>
+
+    <script>
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Run once on load
+    </script>
+</body>
+</html>
